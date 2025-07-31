@@ -1,0 +1,75 @@
+#!/bin/bash
+# Kernel Package Manager
+# For managing kernel versions, and keeping your kernel patched.
+
+REPO="https://raw.githubusercontent.com/thedistromaker/lfs_stuff/main"
+installk_legacy() {
+	# We first fetch the remote version of the kernel from /kernel_legacyver.txt
+	echo "--> Checking repository for kernel version..."
+	wget -q -O /tmp/kver_rem.txt ${REPO}/kernel_legacyver.txt
+	NEWVER=$(cat /tmp/kver_rem.txt)
+	echo "--> Downloading kernel ${NEWVER}..."
+	wget -O /boot/vmlinuz-new.xz ${REPO}/bzImage-${NEWVER}.xz # This version of kpkg is configured for slow internet speeds, using xz-compressed kernels.
+	xz -d /boot/vmlinuz-new.xz -o /boot/newlinux
+	mv /boot/vmlinuz /boot/vmlinuz-old
+	mv /boot/newlinux /boot/vmlinuz
+	rm -rf /tmp/kver_rem.txt
+	echo "--> Kernel installed! Reboot to apply changes."
+	exit 0
+}
+
+installk_bleedingedge() {
+	# We first fetch the remote version of the kernel from /kernel_lnext.txt
+	echo "--> Checking repository for kernel version..."
+	wget -q -O /tmp/kver_rem.txt ${REPO}/kernel_lnext.txt
+	NEWVER=$(cat /tmp/kver_rem.txt)
+	echo "--> Downloading kernel ${NEWVER}..."
+	wget -O /boot/vmlinuz-new.xz ${REPO}/bzImage-${NEWVER}.xz # This version of kpkg is configured for slow internet speeds, using xz-compressed kernels.
+	xz -d /boot/vmlinuz-new.xz -o /boot/newlinux
+	mv /boot/vmlinuz /boot/vmlinuz-old
+	mv /boot/newlinux /boot/vmlinuz
+	rm -rf /tmp/kver_rem.txt
+	echo "--> Kernel installed! Reboot to apply changes." # At this moment, we pray that it works.
+	exit 0
+}
+
+installk_stable() {
+	# We first fetch the remote version of the kernel from /kernel_stable.txt
+	echo "--> Checking repository for kernel version..."
+	wget -q -O /tmp/kver_rem.txt ${REPO}/kernel_stable.txt
+	NEWVER=$(cat /tmp/kver_rem.txt)
+	echo "--> Downloading kernel ${NEWVER}..."
+	wget -O /boot/vmlinuz-new.xz ${REPO}/bzImage-${NEWVER}.xz # This version of kpkg is configured for slow internet speeds, using xz-compressed kernels.
+	xz -d /boot/vmlinuz-new.xz -o /boot/newlinux
+	mv /boot/vmlinuz /boot/vmlinuz-old
+	mv /boot/newlinux /boot/vmlinuz
+	rm -rf /tmp/kver_rem.txt
+	echo "--> Kernel installed! Reboot to apply changes."
+	exit 0
+}
+
+removek() {
+	# !!! ONLY FOR UPGRADE SCRIPT. !!!
+	echo "--> Removing current kernel..."
+	mv /boot/vmlinuz /boot/vmlinuz-old
+	# echo "--> Finished!" -- Yeah we don't like to get the user's hopes up and then hammer them with more.
+	PREF=$(cat /etc/kpkg/pref.txt)
+	case $PREF in
+		stb)
+			installk_stable
+			;;
+		bedge)
+			installk_bleedingedge
+			;;
+		legacy)
+			installk_legacy
+			;;
+		*)
+			installk_stable
+			;;
+	esac
+}
+
+updatek() {
+	echo "--> Checking for updates..."
+}

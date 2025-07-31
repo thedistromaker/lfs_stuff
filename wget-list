@@ -44,7 +44,7 @@ https://github.com/libffi/libffi/releases/download/v3.4.7/libffi-3.4.7.tar.gz
 https://download.savannah.gnu.org/releases/libpipeline/libpipeline-1.5.8.tar.gz
 https://ftp.gnu.org/gnu/libtool/libtool-2.5.4.tar.xz
 https://github.com/besser82/libxcrypt/releases/download/v4.4.38/libxcrypt-4.4.38.tar.xz
-https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.13.4.tar.xz
+https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.16.tar.xz
 https://github.com/lz4/lz4/releases/download/v1.10.0/lz4-1.10.0.tar.gz
 https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.xz
 https://ftp.gnu.org/gnu/make/make-4.4.1.tar.gz
@@ -79,7 +79,7 @@ https://www.kernel.org/pub/linux/utils/util-linux/v2.40/util-linux-2.40.4.tar.xz
 https://github.com/vim/vim/archive/v9.1.1166/vim-9.1.1166.tar.gz
 https://pypi.org/packages/source/w/wheel/wheel-0.45.1.tar.gz
 https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.47.tar.gz
-https://github.com//tukaani-project/xz/releases/download/v5.6.4/xz-5.6.4.tar.xz
+https://github.com/tukaani-project/xz/releases/download/v5.6.4/xz-5.6.4.tar.xz
 https://zlib.net/fossils/zlib-1.3.1.tar.gz
 https://github.com/facebook/zstd/releases/download/v1.5.7/zstd-1.5.7.tar.gz
 https://www.linuxfromscratch.org/patches/lfs/12.3/bzip2-1.0.8-install_docs-1.patch
